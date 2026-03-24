@@ -37,11 +37,11 @@ public:
         return *this;
     }
 
-    std::shared_ptr<Nodo<T>>& getPrimero() const {
+    std::shared_ptr<Nodo<T>>& getPrimero() {
         return primero;
     }
 
-    std::shared_ptr<Nodo<T>>& getUltimo() const {
+    std::shared_ptr<Nodo<T>>& getUltimo() {
         return ultimo;
     }
 
