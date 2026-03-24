@@ -42,4 +42,11 @@ double Paciente::getTemperatura()
 {
     return temperatura;
 }
-
+void Paciente::mostrarInformacion()
+{
+    std::cout<<"Numero de historial: "<< p.num_historial<<std::endl;
+    std::cout<<"Hora de llegada: "<<p.hora_llegada<<std::endl;
+    std::cout<<"Triaje: "<<p.triaje<<std::endl;
+    std::cout<<"Temperatura: "<<p.temperatura<<std::endl;
+    return os;
+}

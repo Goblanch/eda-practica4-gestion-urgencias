@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <ostream>
 
 class Paciente {
 private:
@@ -27,5 +28,14 @@ public:
     std::string getCodigo();
     char getTriaje();
     double getTemperatura();
+    friend std::ostream& operator<<(std::ostream &os, const Paciente &p)
+    {
+        os<<"Numero de historial: "<< p.num_historial<<std::endl;
+        os<<"Hora de llegada: "<<p.hora_llegada<<std::endl;
+        os<<"Triaje: "<<p.triaje<<std::endl;
+        os<<"Temperatura: "<<p.temperatura<<std::endl;
+        return os;
+    }
+    void mostrarInformacion();
 
 };
