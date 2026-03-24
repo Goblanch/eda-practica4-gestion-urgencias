@@ -1,4 +1,5 @@
 #include "Paciente.h"
+#include <iostream>
 
 void Paciente::setNumeroHistorial(int num)
 {
@@ -44,9 +45,8 @@ double Paciente::getTemperatura()
 }
 void Paciente::mostrarInformacion()
 {
-    std::cout<<"Numero de historial: "<< p.num_historial<<std::endl;
-    std::cout<<"Hora de llegada: "<<p.hora_llegada<<std::endl;
-    std::cout<<"Triaje: "<<p.triaje<<std::endl;
-    std::cout<<"Temperatura: "<<p.temperatura<<std::endl;
-    return os;
+    std::cout<<"Numero de historial: "<< num_historial<<std::endl;
+    std::cout<<"Hora de llegada: "<< hora_llegada<<std::endl;
+    std::cout<<"Triaje: "<< triaje<<std::endl;
+    std::cout<<"Temperatura: "<< temperatura<<std::endl;
 }
