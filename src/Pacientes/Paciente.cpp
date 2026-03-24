@@ -31,6 +31,11 @@ int Paciente::getHoraLlegada()
 {
     return hora_llegada;
 }
+
+bool Paciente::getEspera() {
+    return espera;
+}
+
 std::string Paciente::getCodigo()
 {
     return codigo;

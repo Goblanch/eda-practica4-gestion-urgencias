@@ -9,14 +9,16 @@ private:
     int hora_llegada; //formato hhmm
     char triaje; // v, a, r No hay que validarlo
     double temperatura;
+    bool espera; // Determina si un paciente espera cola o se va.
 public:
-    Paciente(int num, int hora, char tri, double temp)
+    Paciente(int num, int hora, char tri, double temp, bool esp)
     {
         num_historial = num;
         hora_llegada = hora;
         triaje = tri;
         temperatura = temp;
         actualizarCodigo();
+        espera = esp;
     }
     void setNumeroHistorial(int num);
     void setHoraLlegada(int hora);
@@ -25,9 +27,13 @@ public:
     void actualizarCodigo();
     int getNumeroHistorial();
     int getHoraLlegada();
+    bool getEspera();
     std::string getCodigo();
     char getTriaje();
     double getTemperatura();
+    bool operator==(const Paciente& other) const {
+        return num_historial == other.num_historial;
+    }
     friend std::ostream& operator<<(std::ostream &os, const Paciente &p)
     {
         os<<"Numero de historial: "<< p.num_historial<<std::endl;
