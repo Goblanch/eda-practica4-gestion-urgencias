@@ -37,11 +37,11 @@ public:
         return *this;
     }
 
-    std::shared_ptr<Nodo<T>> getPrimero() const {
+    std::shared_ptr<Nodo<T>>& getPrimero() const {
         return primero;
     }
 
-    std::shared_ptr<Nodo<T>> getUltimo() const {
+    std::shared_ptr<Nodo<T>>& getUltimo() const {
         return ultimo;
     }
 
@@ -58,6 +58,19 @@ public:
         ++numElementos;
     }
 
+    void push_front(const T& value) {
+        std::shared_ptr<Nodo<T>> nuevoNodo = std::make_shared<Nodo<T>>(value);
+
+        if (empty()) {
+            primero = ultimo = nuevoNodo;
+        } else {
+            nuevoNodo->setSig(primero);
+            primero = nuevoNodo;
+        }
+
+        ++numElementos;
+    }
+
     void pop() {
         if (empty()) {
             throw std::underflow_error("La cola está vacía.");
@@ -69,6 +82,52 @@ public:
         if (primero == nullptr) {
             ultimo = nullptr;
         }
+    }
+
+    bool exists(const T& dato) const {
+        std::shared_ptr<Nodo<T>> actual = primero;
+
+        while (actual != nullptr) {
+            if (actual->getDato() == dato) {
+                return true;
+            }
+            actual = actual->getSig();
+        }
+
+        return false;
+    }
+
+    bool remove(const T& valor) {
+        if (empty()) {
+            return false;
+        }
+
+        // Si es el primero...
+        if (primero->getDato() == valor) {
+            pop();
+            return true;
+        }
+
+        std::shared_ptr<Nodo<T>> anterior = primero;
+        std::shared_ptr<Nodo<T>> actual = primero->getSig();
+
+        while (actual != nullptr) {
+            if (actual->getDato() == valor) {
+                anterior->setSig(actual->getSig());
+
+                if (actual == ultimo) {
+                    ultimo = anterior;
+                }
+
+                --numElementos;
+                return true;
+            }
+
+            anterior = actual;
+            actual = actual->getSig();
+        }
+
+        return false;
     }
 
     const T& front() const {
